@@ -60,6 +60,7 @@ def foc_in(event, balk):
 
 def foc_out(event, balk):
     balk.config({"foreground": 'grey'})
+    balk.delete('0', END)
     balk.insert(0, "Zoeken...")
 
 def search(master, entry):
@@ -81,7 +82,10 @@ def search(master, entry):
             Label(spel_frame, text='Publisher: ' + str(row['publisher']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=5, column=0, pady=4, padx=5, sticky=W)
             Label(spel_frame, text='Tags: ' + str(row['steamspy_tags']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=5, column=0, pady=4, padx=5, sticky=W)
     if frame1.winfo_children() == []:
-        showerror("No match found", message="Er zijn geen zoekresultaten gevonden. Controleer uw spelling en probeer het opnieuw\n\nTip: De zoekopdracht is hoofdletter gevoelig")
+        if entry.get() == '':
+            showerror("No input", message="U heeft niks ingevoerd. Probeer het opnieuw")
+        else:
+            showerror("No match found", message="Er zijn geen zoekresultaten gevonden. Controleer uw spelling en probeer het opnieuw\n\nTip: De zoekopdracht is hoofdletter gevoelig")
 
 def alle():
     root.title('Overview - Alle Spellen')
