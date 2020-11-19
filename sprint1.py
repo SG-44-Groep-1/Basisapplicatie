@@ -1,12 +1,17 @@
 from Placement import *
 import json
 from tkinter import *
+from tkinter.messagebox import *
+from PIL import Image, ImageTk
 
 root = Tk()
 
 with open('steam.json') as jsondata:
     data = json.load(jsondata)
 
+foto = PhotoImage(file="vgglas.png")
+frame0 = LabelFrame(padx=5, pady=5, width=250, height=30, bg="#171a21", highlightthickness=0, borderwidth=0)
+frame0.pack(fill=BOTH, side=TOP)
 frame1 = LabelFrame(padx=5, pady=5, width=250, height=80, bg="#171a21", highlightthickness=0, borderwidth=0)
 frame1.pack(fill=BOTH, side=TOP)
 frame2 = LabelFrame(padx=5, pady=5, width=250, height=80, bg="#171a21", highlightthickness=0, borderwidth=0)
@@ -19,6 +24,8 @@ frame5 = LabelFrame(padx=5, pady=5, width=250, height=80, bg="#171a21", highligh
 frame5.pack(fill=BOTH, side=TOP)
 
 def hoofdmenu():
+    for widget in frame0.winfo_children():
+        widget.destroy()
     for widget in frame1.winfo_children():
         widget.destroy()
     for widget in frame2.winfo_children():
@@ -29,15 +36,56 @@ def hoofdmenu():
         widget.destroy()
     for widget in frame5.winfo_children():
         widget.destroy()
-    spel_frame = LabelFrame(frame1, bg="#2a475e", padx=5, pady=5, width=250, height=80, highlightthickness=0, borderwidth=0)
-    spel_frame.pack(pady=4, padx=4, side=LEFT)
-    Label(spel_frame, text="Steam spellen ", font=("Century Gothic", 12, 'bold'), fg='#c7d5e0', bg="#2a475e").grid(row=0, column=0, pady=2, padx=2, sticky=W)
-    Label(spel_frame, text='Gemaakt door Tim Bolhoeve', font=("Arial", 8), bg="#2a475e", fg="#66c0f4").grid(row=1, column=0, pady=4, padx=5, sticky=W)
-    Label(spel_frame, text='Geüpdatet door Jasper van der Post', font=("Arial", 8), bg="#2a475e", fg="#66c0f4").grid(row=2, column=0, pady=4, padx=5, sticky=W)
+
+    author_info = LabelFrame(frame1, bg="#2a475e", padx=5, pady=5, width=250, height=80, highlightthickness=0, borderwidth=0)
+    author_info.pack(pady=40, padx=4, side=LEFT)
+    Label(author_info, text="Steam spellen ", font=("Century Gothic", 12, 'bold'), fg='#c7d5e0', bg="#2a475e").grid(row=0, column=0, pady=2, padx=2, sticky=W)
+    Label(author_info, text='Gemaakt door Tim Bolhoeve', font=("Arial", 8), bg="#2a475e", fg="#66c0f4").grid(row=1, column=0, pady=4, padx=5, sticky=W)
+    Label(author_info, text='Geüpdatet door Jasper van der Post', font=("Arial", 8), bg="#2a475e", fg="#66c0f4").grid(row=2, column=0, pady=4, padx=5, sticky=W)
+
+def zoekbalk():
+    Label(frame0, text="Zoeken: ", font=("Century Gothic", 10), fg='#c7d5e0', bg="#171a21").grid(row=0, column=0, pady=2, padx=2, sticky=W)
+    balk = Entry(frame0, width=25, bg='#2a475e', fg='grey')
+    balk.grid(row=0, column=1, pady=2, sticky=W)
+    searchbtn = Button(frame0, text="Zoeken", image=foto, bg='#2a475e', activebackground='#66c0f4', bd=1, relief=GROOVE, command=lambda: search(frame1, balk)).grid(row=0, column=2, pady=2, sticky=W)
+    balk.bind("<FocusIn>", lambda event: foc_in(event, balk))
+    balk.bind("<FocusOut>", lambda event: foc_out(event, balk))
+    balk.bind("<Return>", lambda event: search(frame1, balk))
+    balk.insert(0, "Zoeken...")
+
+def foc_in(event, balk):
+    balk.delete(0, END)
+    balk.configure(fg='#c7d5e0')
+
+def foc_out(event, balk):
+    balk.config({"foreground": 'grey'})
+    balk.insert(0, "Zoeken...")
+
+def search(master, entry):
+
+    for widget in frame1.winfo_children():
+        widget.destroy()
+    naam_spel = entry.get()
+    for row in data:
+        if row['name'] == naam_spel:
+            spel_frame = LabelFrame(master, bg="#2a475e", padx=5, pady=5, width=250, height=80, highlightthickness=0, borderwidth=0)
+            spel_frame.pack(pady=4, padx=4, side=LEFT)
+            Label(spel_frame, text="Naam: " + str(row['name']), font=("Century Gothic", 12, 'bold'), fg='#c7d5e0', bg="#2a475e").grid(row=0, column=0, pady=2, padx=2, sticky=W)
+            Label(spel_frame, text="--------------------------------------------------------------", bg="#2a475e", fg="#2a475e", justify="left").grid(row=1)
+            Label(spel_frame, text='Prijs: €' + str(row['price']), font=("Arial", 8), bg="#2a475e", fg="#66c0f4").grid(row=1, column=0, pady=4, padx=5, sticky=W)
+            Label(spel_frame, text='Positieve Reviews: ' + str(row['positive_ratings']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=2, column=0, pady=4, padx=5, sticky=W)
+            Label(spel_frame, text='Negatieve Reviews: ' + str(row['negative_ratings']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=3, column=0, pady=4, padx=5, sticky=W)
+            Label(spel_frame, text='Release Date: ' + str(row['release_date']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=4, column=0, pady=4, padx=5, sticky=W)
+            Label(spel_frame, text='Developer: ' + str(row['developer']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=5, column=0, pady=4, padx=5, sticky=W)
+            Label(spel_frame, text='Publisher: ' + str(row['publisher']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=5, column=0, pady=4, padx=5, sticky=W)
+            Label(spel_frame, text='Tags: ' + str(row['steamspy_tags']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=5, column=0, pady=4, padx=5, sticky=W)
+    if frame1.winfo_children() == []:
+        showerror("No match found", message="Er zijn geen zoekresultaten gevonden. Controleer uw spelling en probeer het opnieuw\n\nTip: De zoekopdracht is hoofdletter gevoelig")
 
 def alle():
     root.title('Overview - Alle Spellen')
-
+    for widget in frame0.winfo_children():
+        widget.destroy()
     for widget in frame1.winfo_children():
         widget.destroy()
     for widget in frame2.winfo_children():
@@ -53,7 +101,8 @@ def alle():
 
 def gratis():
     root.title('Overview - Gratis Spellen')
-
+    for widget in frame0.winfo_children():
+        widget.destroy()
     for widget in frame1.winfo_children():
         widget.destroy()
     for widget in frame2.winfo_children():
@@ -69,7 +118,8 @@ def gratis():
 
 def onder1():
     root.title('Overview - Spellen onder €1')
-
+    for widget in frame0.winfo_children():
+        widget.destroy()
     for widget in frame1.winfo_children():
         widget.destroy()
     for widget in frame2.winfo_children():
@@ -85,6 +135,8 @@ def onder1():
 
 def onder5():
     root.title('Overview - Spellen onder €5')
+    for widget in frame0.winfo_children():
+        widget.destroy()
     for widget in frame1.winfo_children():
         widget.destroy()
     for widget in frame2.winfo_children():
@@ -100,6 +152,8 @@ def onder5():
 
 def onder10():
     root.title('Overview - Spellen onder €10')
+    for widget in frame0.winfo_children():
+        widget.destroy()
     for widget in frame1.winfo_children():
         widget.destroy()
     for widget in frame2.winfo_children():
@@ -115,6 +169,10 @@ def onder10():
 
 #hoofdmenu
 hoofdmenu()
+zoekbalk()
+#einde
+
+#bind enter
 #einde
 
 #navbar menu

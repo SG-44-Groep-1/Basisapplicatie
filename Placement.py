@@ -4,6 +4,7 @@ import json
 with open('steam.json') as jsondata:
     data = json.load(jsondata)
 
+
 def place_alle(master1, master2, master3, master4, master5):
     for row in data:
         if row['appid'] < 60:
