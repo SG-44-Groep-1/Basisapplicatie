@@ -37,6 +37,7 @@ def hoofdmenu():
     for widget in frame5.winfo_children():
         widget.destroy()
 
+    zoekbalk()
     author_info = LabelFrame(frame1, bg="#2a475e", padx=5, pady=5, width=250, height=80, highlightthickness=0, borderwidth=0)
     author_info.pack(pady=40, padx=4, side=LEFT)
     Label(author_info, text="Steam spellen ", font=("Century Gothic", 12, 'bold'), fg='#c7d5e0', bg="#2a475e").grid(row=0, column=0, pady=2, padx=2, sticky=W)
