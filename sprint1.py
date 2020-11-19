@@ -172,9 +172,6 @@ hoofdmenu()
 zoekbalk()
 #einde
 
-#bind enter
-#einde
-
 #navbar menu
 menubar = Menu(root)
 
