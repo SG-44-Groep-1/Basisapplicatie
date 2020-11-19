@@ -33,6 +33,7 @@ def hoofdmenu():
     spel_frame.pack(pady=4, padx=4, side=LEFT)
     Label(spel_frame, text="Steam spellen ", font=("Century Gothic", 12, 'bold'), fg='#c7d5e0', bg="#2a475e").grid(row=0, column=0, pady=2, padx=2, sticky=W)
     Label(spel_frame, text='Gemaakt door Tim Bolhoeve', font=("Arial", 8), bg="#2a475e", fg="#66c0f4").grid(row=1, column=0, pady=4, padx=5, sticky=W)
+    Label(spel_frame, text='Geüpdatet door Jasper van der Post', font=("Arial", 8), bg="#2a475e", fg="#66c0f4").grid(row=2, column=0, pady=4, padx=5, sticky=W)
 
 def alle():
     root.title('Overview - Alle Spellen')
