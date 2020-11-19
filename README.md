@@ -20,7 +20,7 @@ Lucas - Brononderzoeker - BIM
 ```
 voor-achternaam:      Lucas van der Holt
 studentnummer:        1785077
-username:             -------
+username:             LucasFloris
 ```
 
 Damian - Plant - AI/TI/CSC
