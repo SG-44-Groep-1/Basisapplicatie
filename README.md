@@ -13,14 +13,14 @@ Jasper - Vormer - AI/TI/CSC
 ```
 voor-achternaam:      Jasper van der Post
 studentnummer:        1777790
-username:             BOT Arnold
+username:             Pink-Shadow
 ```
 
 Lucas - Brononderzoeker - BIM
 ```
 voor-achternaam:      Lucas van der Holt
 studentnummer:        1785077
-username:             Surgicalsniper01
+username:             -------
 ```
 
 Damian - Plant - AI/TI/CSC
@@ -34,7 +34,7 @@ Tim - Bedrijfsman - AI/TI
 ```
 voor-achternaam:      Tim Bolhoeve
 studentnummer:        1789912
-username:             Orange Juice
+username:             Tim-Bolhoeve
 ```
 
 ### Gemaakt met
