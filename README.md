@@ -3,7 +3,7 @@ In dit project maken we een grafische weergave die inzicht geeft in het gaming g
 
 ## Uitvoeren van de applicatie
 
-Om de applicatie te laten werken is het installeren van [Pycharm](https://download.jetbrains.com/python/pycharm-professional-2020.2.1.exe) en [Python 3.8](https://www.python.org/downloads/release/python-386/) op uw computer nodig.
+Om de applicatie te laten werken is het installeren van [Pycharm](https://download.jetbrains.com/python/pycharm-professional-2020.2.1.exe) en [Python 3.8](https://www.python.org/ftp/python/3.8.6/python-3.8.6-amd64.exe) op uw computer nodig.
 In Pycharm moet de bijgeleverde code gezet worden, en de juiste interpreters toe worden gevoegd.
 Deze interpreters zijn:
 * Pip
