@@ -8,6 +8,7 @@ In Pycharm moet de bijgeleverde code gezet worden, en de juiste interpreters toe
 Deze interpreters zijn:
 * Pip
 * Pillow
+
 Als dit is gelukt moet de gebruiker de rechtermuisknop (mouse-2) klikken, en vervolgens de knop "Run" klikken in het menu wat wordt geopend.
 Als alles is gelukt zal u een hoofdmenu scherm te zien krijgen.
 
