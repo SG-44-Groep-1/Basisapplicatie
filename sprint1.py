@@ -60,16 +60,14 @@ def foc_in(event, balk):
 
 def foc_out(event, balk):
     balk.config({"foreground": 'grey'})
-    balk.delete('0', END)
     balk.insert(0, "Zoeken...")
 
 def search(master, entry):
-
     for widget in frame1.winfo_children():
         widget.destroy()
     naam_spel = entry.get()
     for row in data:
-        if row['name'] == naam_spel:
+        if naam_spel.lower() in row['name'].lower():
             spel_frame = LabelFrame(master, bg="#2a475e", padx=5, pady=5, width=250, height=80, highlightthickness=0, borderwidth=0)
             spel_frame.pack(pady=4, padx=4, side=LEFT)
             Label(spel_frame, text="Naam: " + str(row['name']), font=("Century Gothic", 12, 'bold'), fg='#c7d5e0', bg="#2a475e").grid(row=0, column=0, pady=2, padx=2, sticky=W)
@@ -82,10 +80,7 @@ def search(master, entry):
             Label(spel_frame, text='Publisher: ' + str(row['publisher']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=5, column=0, pady=4, padx=5, sticky=W)
             Label(spel_frame, text='Tags: ' + str(row['steamspy_tags']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=5, column=0, pady=4, padx=5, sticky=W)
     if frame1.winfo_children() == []:
-        if entry.get() == '':
-            showerror("No input", message="U heeft niks ingevoerd. Probeer het opnieuw")
-        else:
-            showerror("No match found", message="Er zijn geen zoekresultaten gevonden. Controleer uw spelling en probeer het opnieuw\n\nTip: De zoekopdracht is hoofdletter gevoelig")
+        showerror("No match found", message="Er zijn geen zoekresultaten gevonden. Controleer uw spelling en probeer het opnieuw.")
 
 def alle():
     root.title('Overview - Alle Spellen')
