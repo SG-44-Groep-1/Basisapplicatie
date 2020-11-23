@@ -58,26 +58,14 @@ def search(master, entry):
     naam_spel = entry.get()
 
     teller = 0
-    maximum = -800000000000
     search_results = []
-    sorted_lst = []
 
     for row in data:
         if naam_spel.lower() in row['name'].lower() and teller < 5:
             search_results.append(row)
             teller += 1
-    while 1:
-        for i in search_results:
-            if i['positive_ratings'] > maximum:
-                maximum = i['positive_ratings']
-        for i in search_results:
-            if i['positive_ratings'] == maximum:
-                search_results.pop(search_results.index(i))
-                sorted_lst.append(i)
-        maximum = -800000000000
-        if len(search_results) == 0:
-            break
 
+    sorted_lst = sort(search_results)
     for row in sorted_lst:
         spel_frame = LabelFrame(master, bg="#2a475e", padx=5, pady=5, width=250, height=80, highlightthickness=0, borderwidth=0)
         spel_frame.pack(pady=4, padx=4, side=LEFT)
