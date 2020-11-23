@@ -49,4 +49,4 @@ username:             Tim-Bolhoeve
 
 ### Auteur
 
-* **Tim Bolhoeve**
+* **Tim Bolhoeve** - [GitHub](https://github.com/Tim-Bolhoeve)
