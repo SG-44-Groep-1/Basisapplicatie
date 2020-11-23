@@ -10,8 +10,7 @@ Deze interpreters zijn:
 * Pip
 * Pillow
 
-Als dit is gelukt moet de gebruiker de rechtermuisknop (mouse-2) klikken, en vervolgens de knop "Run" klikken in het menu wat wordt geopend.
-Als alles is gelukt zal u een hoofdmenu scherm te zien krijgen.
+Als de interpreters toegevoegd zijn moet de gebruiker vervolgens op de rechtermuisknop (mouse-2) klikken. In dit menu moet "run" worden aangeklikt met de linkermuisknop (mouse-1). Nadat deze stappen goed zijn uitgevoerd verschijnt er een scherm genaamd overview.
 
 ## SG-44 - Groep 1
 
