@@ -1,5 +1,6 @@
 # Project B
-In dit project maken we een grafische weergave die inzicht geeft in het gaming gedrag van jouw vrienden op het platform Steam, ondersteund door een netwerk waarbij gebruik gemaakt wordt van een RaspberryPi.
+In dit project maken we een grafische weergave die inzicht geeft in het gaming gedrag van jouw vrienden op het 
+platform Steam. Dit word mogelijk gemaakt door een netwerk op de Raspberry Pi.
 
 ## Uitvoeren van de applicatie
 
