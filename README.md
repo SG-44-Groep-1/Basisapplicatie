@@ -3,14 +3,9 @@ In dit project maken we een grafische weergave die inzicht geeft in het gaming g
 
 ## Uitvoeren van de applicatie
 
-Om de applicatie te laten werken is het installeren van [Pycharm](https://download.jetbrains.com/python/pycharm-professional-2020.2.1.exe) en [Python 3.8](https://www.python.org/ftp/python/3.8.6/python-3.8.6-amd64.exe) op uw computer nodig.
-In Pycharm moet de bijgeleverde code gezet worden, en de juiste interpreters toe worden gevoegd.
-Deze interpreters zijn:
-* Pip
-* Pillow
-
-Als dit is gelukt moet de gebruiker de rechtermuisknop (mouse-2) klikken, en vervolgens de knop "Run" klikken in het menu wat wordt geopend.
-Als alles is gelukt zal u een hoofdmenu scherm te zien krijgen.
+Om de applicatie te laten werken is het installeren van Pycharm op uw computer nodig.
+In Pycharm moet de bijgeleverde code gezet worden, als dit is gedaan moet de gebruiker
+op de rechtermuisknop klikken en "Run" klikken. 
 
 ## SG-44 - Groep 1
 
