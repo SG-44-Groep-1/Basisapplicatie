@@ -1,16 +1,11 @@
 # Project B
-In dit project maken we een grafische weergave die inzicht geeft in het gaming gedrag van jouw vrienden op het 
-platform Steam. Dit word mogelijk gemaakt door een netwerk op de Raspberry Pi.
+In dit project maken we een grafische weergave die inzicht geeft in het gaming gedrag van jouw vrienden op het platform Steam, ondersteund door een netwerk waarbij gebruik gemaakt wordt van een RaspberryPi.
 
 ## Uitvoeren van de applicatie
 
-Om de applicatie te laten werken is het installeren van [Pycharm](https://download.jetbrains.com/python/pycharm-professional-2020.2.1.exe) en [Python 3.8](https://www.python.org/ftp/python/3.8.6/python-3.8.6-amd64.exe) op uw computer noodzakelijk.
-In Pycharm moet de bijgeleverde code gezet worden, en de juiste interpreters toe worden gevoegd.
-Deze interpreters zijn:
-* Pip
-* Pillow
-
-Als de interpreters toegevoegd zijn moet de gebruiker vervolgens op de rechtermuisknop (mouse-2) klikken. In dit menu moet "run" worden aangeklikt met de linkermuisknop (mouse-1). Nadat deze stappen goed zijn uitgevoerd verschijnt er een scherm genaamd overview.
+Om de applicatie te laten werken is het installeren van Pycharm op uw computer nodig.
+In Pycharm moet de bijgeleverde code gezet worden, als dit is gedaan moet de gebruiker
+op de rechtermuisknop klikken en "Run" klikken. 
 
 ## SG-44 - Groep 1
 
@@ -49,4 +44,4 @@ username:             Tim-Bolhoeve
 
 ### Auteur
 
-* **Tim Bolhoeve** - [GitHub](https://github.com/Tim-Bolhoeve)
+* **Tim Bolhoeve**

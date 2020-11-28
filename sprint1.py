@@ -30,7 +30,6 @@ def hoofdmenu():
     Label(author_info, text='Creator: Tim Bolhoeve', font=("Arial", 8), bg="#2a475e", fg="#66c0f4").grid(row=1, column=0, pady=4, padx=5, sticky=W)
     Label(author_info, text='Developer: Jasper van der Post / Tim Bolhoeve', font=("Arial", 8), bg="#2a475e", fg="#66c0f4").grid(row=2, column=0, pady=4, padx=5, sticky=W)
 
-
 def zoekbalk():
     Label(frame0, text="Zoeken: ", font=("Century Gothic", 10), fg='#c7d5e0', bg="#171a21").grid(row=0, column=0, pady=2, padx=2, sticky=W)
     balk = Entry(frame0, width=25, bg='#2a475e', fg='grey')
@@ -51,17 +50,62 @@ def foc_out(event, balk):
     balk.insert(0, "Zoeken...")
 
 def search(master, master2, entry):
+    root.geometry('1781x550+70+200')
     for widget in frame1.winfo_children():
         widget.destroy()
     for widget in frame2.winfo_children():
         widget.destroy()
-
     naam_spel = entry.get()
-    lookup(master, master2, entry)
+
+
+    teller = 0
+    for row in data:
+        if naam_spel.lower() in row['name'].lower() and teller < 5:
+            spel_frame = LabelFrame(master, bg="#2a475e", padx=5, pady=5, width=250, height=80, highlightthickness=0, borderwidth=0)
+            spel_frame.pack(pady=4, padx=4, side=LEFT)
+            Label(spel_frame, text="Naam: " + str(row['name']), font=("Century Gothic", 12, 'bold'), fg='#c7d5e0', bg="#2a475e", wraplength=400).grid(row=0, column=0, pady=2, padx=2, sticky=W)
+            Label(spel_frame, text="--------------------------------------------------------------", bg="#2a475e", fg="#2a475e", justify="left").grid(row=1)
+            Label(spel_frame, text='Prijs: €' + str(row['price']), font=("Arial", 8), bg="#2a475e", fg="#66c0f4").grid(row=1, column=0, pady=4, padx=5, sticky=W)
+            Label(spel_frame, text='Positieve Reviews: ' + str(row['positive_ratings']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=2, column=0, pady=4, padx=5, sticky=W)
+            Label(spel_frame, text='Negatieve Reviews: ' + str(row['negative_ratings']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=3, column=0, pady=4, padx=5, sticky=W)
+            Label(spel_frame, text='Release Date: ' + str(row['release_date']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=4, column=0, pady=4, padx=5, sticky=W)
+            Label(spel_frame, text='Developer: ' + str(row['developer']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=5, column=0, pady=4, padx=5, sticky=W)
+            Label(spel_frame, text='Publisher: ' + str(row['publisher']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=6, column=0, pady=4, padx=5, sticky=W)
+            tagframe = Frame(spel_frame, bg="#2a475e", highlightthickness=0, borderwidth=0)
+            tagframe.grid(row=7, column=0, pady=2, padx=2, sticky=W)
+            tagknop = row['steamspy_tags'].split(';')
+            column = 1
+            Label(tagframe, text='Tags: ', bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=7, column=0, padx=5, sticky=E)
+            for tag in tagknop:
+                knoppie = Button(tagframe, text=tag, cursor="hand2", borderwidth=0, highlightthickness=0, bg="#223c4b", activebackground="#67c1f5", fg="#67c1f5")
+                knoppie.grid(row=7, column=column, padx=2, sticky=E)
+                column += 1
+            teller += 1
+        if naam_spel.lower() in row['name'].lower() and 5 <= teller < 10:
+            spel_frame = LabelFrame(master2, bg="#2a475e", padx=5, pady=5, width=250, height=80, highlightthickness=0, borderwidth=0)
+            spel_frame.pack(pady=4, padx=4, side=LEFT)
+            Label(spel_frame, text="Naam: " + str(row['name']), font=("Century Gothic", 12, 'bold'), fg='#c7d5e0', bg="#2a475e", wraplength=400).grid(row=0, column=0, pady=2, padx=2, sticky=W)
+            Label(spel_frame, text="--------------------------------------------------------------", bg="#2a475e", fg="#2a475e", justify="left").grid(row=1)
+            Label(spel_frame, text='Prijs: €' + str(row['price']), font=("Arial", 8), bg="#2a475e", fg="#66c0f4").grid(row=1, column=0, pady=4, padx=5, sticky=W)
+            Label(spel_frame, text='Positieve Reviews: ' + str(row['positive_ratings']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=2, column=0, pady=4, padx=5, sticky=W)
+            Label(spel_frame, text='Negatieve Reviews: ' + str(row['negative_ratings']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=3, column=0, pady=4, padx=5, sticky=W)
+            Label(spel_frame, text='Release Date: ' + str(row['release_date']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=4, column=0, pady=4, padx=5, sticky=W)
+            Label(spel_frame, text='Developer: ' + str(row['developer']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=5, column=0, pady=4, padx=5, sticky=W)
+            Label(spel_frame, text='Publisher: ' + str(row['publisher']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=6, column=0, pady=4, padx=5, sticky=W)
+            tagframe = Frame(spel_frame, bg="#2a475e", highlightthickness=0, borderwidth=0)
+            tagframe.grid(row=7, column=0, pady=2, padx=2, sticky=W)
+            tagknop = row['steamspy_tags'].split(';')
+            column = 1
+            Label(tagframe, text='Tags: ', bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=7, column=0, padx=5, sticky=E)
+            for tag in tagknop:
+                knoppie = Button(tagframe, text=tag, cursor="hand2", borderwidth=0, highlightthickness=0, bg="#223c4b", activebackground="#67c1f5", fg="#67c1f5")
+                knoppie.grid(row=7, column=column, padx=2, sticky=E)
+                column += 1
+            teller += 1
     if frame1.winfo_children() == []:
         showerror("No match found", message="Er zijn geen zoekresultaten gevonden. Controleer uw spelling en probeer het opnieuw.")
     else:
-        root.geometry('1781x550+70+200')
+        root.geometry('+100+200')
         root.title(f'Overview - {naam_spel}')
 
 def destroy_frames():
@@ -99,6 +143,7 @@ def onder5():
     destroy_frames()
     place_onder5(frame1, frame2)
     zoekbalk()
+
 def onder10():
     root.title('Overview - Top 10 games under €10')
     root.geometry('1781x550+70+200')
