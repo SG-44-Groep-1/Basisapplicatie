@@ -40,7 +40,7 @@ username:             Tim-Bolhoeve
 ### Gemaakt met
 
 * [Pycharm](https://www.jetbrains.com/pycharm/) - Voor het maken van de GUI
-* [Steam](https://store.steampowered.com/) - Voor een lijst met spellen en vrienden
+* [Steam](https://store.steampowered.com/) - Voor een lijst met achievements voor spellen
 
 ### Auteur
 
