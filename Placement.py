@@ -28,7 +28,7 @@ def place_alle(master1, master2):
                 knoppie.grid(row=7, column=column, padx=2, sticky=E)
                 column += 1
             teller += 1
-        if 5 <= teller < 10:
+        elif 5 <= teller < 10:
             spel_frame = LabelFrame(master2, bg="#2a475e", padx=5, pady=5, width=250, height=80, highlightthickness=0, borderwidth=0)
             spel_frame.pack(pady=4, padx=4, side=LEFT)
             Label(spel_frame, text="Naam: " + str(row['name']), font=("Century Gothic", 12, 'bold'), fg='#c7d5e0', bg="#2a475e", wraplength=400).grid(row=0, column=0, pady=2, padx=2, sticky=W)
@@ -74,7 +74,7 @@ def place_gratis(master1, master2):
                 knoppie.grid(row=7, column=column, padx=2, sticky=E)
                 column += 1
             teller += 1
-        if 5 <= teller < 10 and row['price'] == 0:
+        elif 5 <= teller < 10 and row['price'] == 0:
             spel_frame = LabelFrame(master2, bg="#2a475e", padx=5, pady=5, width=250, height=80, highlightthickness=0, borderwidth=0)
             spel_frame.pack(pady=4, padx=4, side=LEFT)
             Label(spel_frame, text="Naam: " + str(row['name']), font=("Century Gothic", 12, 'bold'), fg='#c7d5e0', bg="#2a475e", wraplength=400).grid(row=0, column=0, pady=2, padx=2, sticky=W)
@@ -111,16 +111,16 @@ def place_onder1(master1, master2):
             Label(spel_frame, text='Developer: ' + str(row['developer']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=5, column=0, pady=4, padx=5, sticky=W)
             Label(spel_frame, text='Publisher: ' + str(row['publisher']), bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=6, column=0, pady=4, padx=5, sticky=W)
             tagframe = Frame(spel_frame, bg="#2a475e", highlightthickness=0, borderwidth=0)
-            tagframe.grid(row=7, column=0, pady=2, padx=2, sticky=W)
+            tagframe.grid(row=8, column=0, pady=2, padx=2, sticky=W)
             tagknop = row['steamspy_tags'].split(';')
             column = 1
-            Label(tagframe, text='Tags: ', bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=7, column=0, padx=5, sticky=E)
+            Label(tagframe, text='Tags: ', bg="#2a475e", font=("Arial", 8), fg="#66c0f4").grid(row=8, column=0, padx=5, sticky=E)
             for tag in tagknop:
                 knoppie = Button(tagframe, text=tag, cursor="hand2", borderwidth=0, highlightthickness=0, bg="#223c4b", activebackground="#67c1f5", fg="#67c1f5")
-                knoppie.grid(row=7, column=column, padx=2, sticky=E)
+                knoppie.grid(row=8, column=column, padx=2, sticky=E)
                 column += 1
             teller += 1
-        if 5 <= teller < 10 and 0 < row['price'] < 1:
+        elif 5 <= teller < 10 and 0 < row['price'] < 1:
             spel_frame = LabelFrame(master2, bg="#2a475e", padx=5, pady=5, width=250, height=80, highlightthickness=0, borderwidth=0)
             spel_frame.pack(pady=4, padx=4, side=LEFT)
             Label(spel_frame, text="Naam: " + str(row['name']), font=("Century Gothic", 12, 'bold'), fg='#c7d5e0', bg="#2a475e", wraplength=400).grid(row=0, column=0, pady=2, padx=2, sticky=W)
@@ -165,7 +165,7 @@ def place_onder5(master1, master2):
                 knoppie.grid(row=7, column=column, padx=2, sticky=E)
                 column += 1
             teller += 1
-        if 5 <= teller < 10 and 1 < row['price'] < 5:
+        elif 5 <= teller < 10 and 1 < row['price'] < 5:
             spel_frame = LabelFrame(master2, bg="#2a475e", padx=5, pady=5, width=250, height=80, highlightthickness=0, borderwidth=0)
             spel_frame.pack(pady=4, padx=4, side=LEFT)
             Label(spel_frame, text="Naam: " + str(row['name']), font=("Century Gothic", 12, 'bold'), fg='#c7d5e0', bg="#2a475e", wraplength=400).grid(row=0, column=0, pady=2, padx=2, sticky=W)
@@ -211,7 +211,7 @@ def place_onder10(master1, master2):
                 knoppie.grid(row=7, column=column, padx=2, sticky=E)
                 column += 1
             teller += 1
-        if 5 <= teller < 10 and 5 < row['price'] < 10:
+        elif 5 <= teller < 10 and 5 < row['price'] < 10:
             spel_frame = LabelFrame(master2, bg="#2a475e", padx=5, pady=5, width=250, height=80, highlightthickness=0, borderwidth=0)
             spel_frame.pack(pady=4, padx=4, side=LEFT)
             Label(spel_frame, text="Naam: " + str(row['name']), font=("Century Gothic", 12, 'bold'), fg='#c7d5e0', bg="#2a475e", wraplength=400).grid(row=0, column=0, pady=2, padx=2, sticky=W)
@@ -232,5 +232,4 @@ def place_onder10(master1, master2):
                 knoppie.grid(row=7, column=column, padx=2, sticky=E)
                 column += 1
             teller += 1
-
 

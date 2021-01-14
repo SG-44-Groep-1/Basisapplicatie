@@ -1,8 +1,10 @@
 from Placement import *
 import json
 from tkinter import *
+from tkinter import ttk
 from tkinter.messagebox import *
 from PIL import Image, ImageTk
+import requests
 
 root = Tk()
 
@@ -16,19 +18,6 @@ frame1 = LabelFrame(padx=5, pady=5, width=250, height=80, bg="#171a21", highligh
 frame1.pack(fill=BOTH, side=TOP)
 frame2 = LabelFrame(padx=5, pady=5, width=250, height=80, bg="#171a21", highlightthickness=0, borderwidth=0)
 frame2.pack(fill=BOTH, side=TOP)
-
-def hoofdmenu():
-    root.title('Overview')
-    root.geometry('269x302+800+200')
-    destroy_frames()
-    zoekbalk()
-
-    author_info = LabelFrame(frame1, bg="#2a475e", padx=5, pady=5, width=250, height=80, highlightthickness=0, borderwidth=0)
-    author_info.pack(pady=40, padx=4, side=LEFT)
-    Label(author_info, text="-----------------------------------------------", bg="#2a475e", fg="#2a475e", justify="left").grid(row=1)
-    Label(author_info, text="Dashboard steam ", font=("Century Gothic", 12, 'bold'), fg='#c7d5e0', bg="#2a475e").grid(row=0, column=0, pady=2, padx=2, sticky=W)
-    Label(author_info, text='Creator: Tim Bolhoeve', font=("Arial", 8), bg="#2a475e", fg="#66c0f4").grid(row=1, column=0, pady=4, padx=5, sticky=W)
-    Label(author_info, text='Developer: Jasper van der Post / Tim Bolhoeve', font=("Arial", 8), bg="#2a475e", fg="#66c0f4").grid(row=2, column=0, pady=4, padx=5, sticky=W)
 
 def zoekbalk():
     Label(frame0, text="Zoeken: ", font=("Century Gothic", 10), fg='#c7d5e0', bg="#171a21").grid(row=0, column=0, pady=2, padx=2, sticky=W)
@@ -151,8 +140,78 @@ def onder10():
     place_onder10(frame1, frame2)
     zoekbalk()
 
+lst = []
+
+def tabel():
+
+    def stati():
+        listBox.delete(*listBox.get_children())
+        global lst
+        api = requests.get(f'https://api.steampowered.com/ISteamUserStats/GetGlobalAchievementPercentagesForApp/v2/?gameid=730&format=json')
+        if api.status_code == 200:
+            steam = api.json()
+            for items in steam['achievementpercentages']['achievements']:
+                lst.append(items)
+                achiev = items['name']
+                proc = items['percent']
+                for dict in data:
+                    if dict['appid'] == 730:
+                        game = dict['name']
+
+                tempList = [[game, achiev, f'{proc}%']]
+
+                for i, (game, achievement, procent) in enumerate(tempList, start=1):
+                    listBox.insert("", "end", values=(game, achievement, procent))
+
+    def laaghoog():
+        listBox.delete(*listBox.get_children())
+        global lst
+        lst_sort = []
+
+        def sort(lst):
+            if len(lst) <= 0:
+                return lst
+            min = {'percent': 1000}
+
+            for i in lst:
+                if i['percent'] <= min['percent']:
+                    min = i
+            lst_sort.append(min)
+            lst.pop(lst.index(i))
+            return sort(lst)
+        sort(lst)
+        for items in lst_sort:
+            achiev = items['name']
+            proc = items['percent']
+            for dict in data:
+                if dict['appid'] == 730:
+                    game = dict['name']
+
+            tempList = [[game, achiev, f'{proc}%']]
+
+            for i, (game, achievement, procent) in enumerate(tempList, start=1):
+                listBox.insert("", "end", values=(game, achievement, procent))
+
+    statistiek = Toplevel(root)
+    statistiek.title("Overview - Statistieken")
+
+    cols = ('Game', 'Achievement', 'Players with this achievement')
+    listBox = ttk.Treeview(statistiek, columns=cols, show='headings')
+    for col in cols:
+        listBox.heading(col, text=col)
+    listBox.pack(expand=TRUE, fill=BOTH)
+
+    b2 = Button(statistiek, text="Hoog-Laag", command=stati)
+    c2 = Button(statistiek, text="Laag-Hoog", command=laaghoog)
+    b2.pack(side=LEFT, fill=X, expand=True)
+    c2.pack(side=LEFT, fill=X, expand=True)
+
+    stati()
+    #ik wil een table met daarin genres staan, van boven naar beneden en dan van links naar rechts hebben staan als kopjes "aantal postitieve" en "negatieve"
+    #met een speeltijd er ook bij, waar dan dus een totaal aantal komt te staan
+
 #hoofdmenu
-hoofdmenu()
+alle()
 zoekbalk()
 #einde
 
@@ -160,8 +219,6 @@ zoekbalk()
 menubar = Menu(root)
 
 filemenu = Menu(menubar, tearoff=0)
-filemenu.add_command(label="Mainscreen", command=hoofdmenu)
-filemenu.add_separator()
 filemenu.add_command(label="Exit", command=root.quit)
 menubar.add_cascade(label="Menu", menu=filemenu)
 
@@ -172,9 +229,11 @@ editmenu.add_command(label="Top 10 games under €1", command=onder1)
 editmenu.add_command(label="Top 10 games under €5", command=onder5)
 editmenu.add_command(label="Top 10 games under €10", command=onder10)
 menubar.add_cascade(label="Filter", menu=editmenu)
+
+statisticmenu = Menu(menubar, tearoff=0)
+menubar.add_command(label="Statistieken", command=tabel)
 #einde navbar
 
-root.geometry('+800+200')
 root.title('Overview')
 root.iconbitmap('Steam.ico')
 root.configure(bg='#171a21')
