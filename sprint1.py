@@ -154,14 +154,11 @@ def tabel():
                 lst.append(items)
                 achiev = items['name']
                 proc = items['percent']
-                for dict in data:
-                    if dict['appid'] == 730:
-                        game = dict['name']
 
-                tempList = [[game, achiev, f'{proc}%']]
+                tempList = [[achiev, f'{proc}%']]
 
-                for i, (game, achievement, procent) in enumerate(tempList, start=1):
-                    listBox.insert("", "end", values=(game, achievement, procent))
+                for i, (achievement, procent) in enumerate(tempList, start=1):
+                    listBox.insert("", "end", values=(achievement, procent))
 
     def laaghoog():
         listBox.delete(*listBox.get_children())
@@ -183,19 +180,17 @@ def tabel():
         for items in lst_sort:
             achiev = items['name']
             proc = items['percent']
-            for dict in data:
-                if dict['appid'] == 730:
-                    game = dict['name']
 
-            tempList = [[game, achiev, f'{proc}%']]
+            tempList = [[achiev, f'{proc}%']]
 
-            for i, (game, achievement, procent) in enumerate(tempList, start=1):
-                listBox.insert("", "end", values=(game, achievement, procent))
+            for i, (achievement, procent) in enumerate(tempList, start=1):
+                listBox.insert("", "end", values=(achievement, procent))
 
     statistiek = Toplevel(root)
-    statistiek.title("Overview - Statistieken")
+    statistiek.geometry("500x600")
+    statistiek.title("Overview - Statistieken - Counter-Strike: Global Offensive")
 
-    cols = ('Game', 'Achievement', 'Players with this achievement')
+    cols = ('Achievement', 'Players with this achievement')
     listBox = ttk.Treeview(statistiek, columns=cols, show='headings')
     for col in cols:
         listBox.heading(col, text=col)
