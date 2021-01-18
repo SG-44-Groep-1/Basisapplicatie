@@ -202,8 +202,6 @@ def tabel():
     c2.pack(side=LEFT, fill=X, expand=True)
 
     stati()
-    #ik wil een table met daarin genres staan, van boven naar beneden en dan van links naar rechts hebben staan als kopjes "aantal postitieve" en "negatieve"
-    #met een speeltijd er ook bij, waar dan dus een totaal aantal komt te staan
 
 #hoofdmenu
 alle()
