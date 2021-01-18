@@ -11,6 +11,7 @@ root = Tk()
 with open('steam.json') as jsondata:
     data = json.load(jsondata)
 
+#de hoofdframes en het logo voor de voorgrootglas (zoekbalk)
 foto = PhotoImage(file="vgglas.png")
 frame0 = LabelFrame(padx=5, pady=5, width=250, height=30, bg="#171a21", highlightthickness=0, borderwidth=0)
 frame0.pack(fill=BOTH, side=TOP)
@@ -19,6 +20,7 @@ frame1.pack(fill=BOTH, side=TOP)
 frame2 = LabelFrame(padx=5, pady=5, width=250, height=80, bg="#171a21", highlightthickness=0, borderwidth=0)
 frame2.pack(fill=BOTH, side=TOP)
 
+#een zoekbalk voor het zoeken naar spellen uit de json
 def zoekbalk():
     Label(frame0, text="Zoeken: ", font=("Century Gothic", 10), fg='#c7d5e0', bg="#171a21").grid(row=0, column=0, pady=2, padx=2, sticky=W)
     balk = Entry(frame0, width=25, bg='#2a475e', fg='grey')
@@ -29,15 +31,18 @@ def zoekbalk():
     balk.bind("<Return>", lambda event: search(frame1, frame2, balk))
     balk.insert(0, "Zoeken...")
 
+#infocussen om ervoor te zorgen dat de zoekbalk een beetje netjes blijft
 def foc_in(event, balk):
     balk.delete(0, END)
     balk.configure(fg='#c7d5e0')
 
+#uitfocussen werkt hetzelfde als infocussen alleen dan andersom
 def foc_out(event, balk):
     balk.config({"foreground": 'grey'})
     balk.delete(0, END)
     balk.insert(0, "Zoeken...")
 
+#alle entry's van filters verwijderen om zo maar 1 spel waarop gezocht is te laten zien
 def search(master, master2, entry):
     root.geometry('1781x550+70+200')
     for widget in frame1.winfo_children():
@@ -97,6 +102,7 @@ def search(master, master2, entry):
         root.geometry('+100+200')
         root.title(f'Overview - {naam_spel}')
 
+#het verwijderen van de hoofdframes zodat het hele scherm leeg wordt gemaakt als er wat wordt gezocht
 def destroy_frames():
     for widget in frame0.winfo_children():
         widget.destroy()
@@ -105,6 +111,7 @@ def destroy_frames():
     for widget in frame2.winfo_children():
         widget.destroy()
 
+#filter om top 20 spellen te laten zien gesorteerd op hoog laag op aantal positieve reviews
 def alle():
     root.title('Overview - Top 10 games')
     root.geometry('1781x550+70+200')
@@ -112,6 +119,7 @@ def alle():
     place_alle(frame1, frame2)
     zoekbalk()
 
+#top 20 best ge-raten gratis spellen
 def gratis():
     root.title('Overview - Top 10 free games')
     root.geometry('1781x550+70+200')
@@ -119,6 +127,7 @@ def gratis():
     place_gratis(frame1, frame2)
     zoekbalk()
 
+#top 20 best ge-raten spellen onder de €1
 def onder1():
     root.title('Overview - Top 10 games under €1')
     root.geometry('1781x550+70+200')
@@ -126,6 +135,7 @@ def onder1():
     place_onder1(frame1, frame2)
     zoekbalk()
 
+#top 20 best ge-raten spellen onder de €5
 def onder5():
     root.title('Overview - Top 10 games under €5')
     root.geometry('1781x550+70+200')
@@ -133,6 +143,7 @@ def onder5():
     place_onder5(frame1, frame2)
     zoekbalk()
 
+#top 20 best ge-raten spellen onder de €10
 def onder10():
     root.title('Overview - Top 10 games under €10')
     root.geometry('1781x550+70+200')
@@ -140,10 +151,14 @@ def onder10():
     place_onder10(frame1, frame2)
     zoekbalk()
 
+#lijst voor de tabel functie
 lst = []
 
+#table om statistieken te laten zien
 def tabel():
 
+    #deze fucntie haalt de statistieken (in ons geval, de achievements met daarin hoeveel procent van de mensen die achievement heeft) op middels de API can steam
+    #deze statistieken staan (voor nu) ge-hardcode op het spel Counter Strike Global Offensive, aangezien dat het hoogst ge-raten spel is
     def stati():
         listBox.delete(*listBox.get_children())
         global lst
@@ -160,11 +175,13 @@ def tabel():
                 for i, (achievement, procent) in enumerate(tempList, start=1):
                     listBox.insert("", "end", values=(achievement, procent))
 
+    #filter knoppen onderaan het schemr om te kunnen vilteren op laag-hoog, gebasseerd op het % aantal
     def laaghoog():
         listBox.delete(*listBox.get_children())
         global lst
         lst_sort = []
 
+        #functie om ze daardwerkelijk te sorteren
         def sort(lst):
             if len(lst) <= 0:
                 return lst
@@ -203,10 +220,9 @@ def tabel():
 
     stati()
 
-#hoofdmenu
+#eerste dingen die de gebruiker te zien krijgt inladen
 alle()
 zoekbalk()
-#einde
 
 #navbar menu
 menubar = Menu(root)
@@ -227,6 +243,7 @@ statisticmenu = Menu(menubar, tearoff=0)
 menubar.add_command(label="Statistieken", command=tabel)
 #einde navbar
 
+#overige dingen om de window te configureren
 root.title('Overview')
 root.iconbitmap('Steam.ico')
 root.configure(bg='#171a21')
